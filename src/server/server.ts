@@ -12,6 +12,7 @@ app.listen(APP_PORT, async () => {
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use((req: Request, res: Response, next: NextFunction) => new CorsMiddleware().use(req, res, next));
+app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use(routes);
 
 
@@ -19,4 +20,4 @@ app.all("*", (req, res) => {
   res.status(404).json({ error: "Resource not found" });
 });
 
-export { app }; 
+export default app;
