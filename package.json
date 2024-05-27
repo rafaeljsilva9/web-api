@@ -1,0 +1,28 @@
+{
+  "name": "web-apis-classes",
+  "version": "1.0.0",
+  "description": "Project with web api classes",
+  "main": "src/index.ts",
+  "author": "Rafael Silva",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server/server.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^4.17.21",
+    "@types/lokijs": "^1.5.14",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5",
+    "winston": "^3.13.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-errors": "^3.1.1",
+    "install": "^0.13.0",
+    "lokijs": "^1.5.12"
+  }
+}

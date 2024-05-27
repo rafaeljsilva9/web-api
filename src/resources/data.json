@@ -1,0 +1,18 @@
+[
+  {
+    "id": "user_1",
+    "customer": "John Doe",
+    "location": "Berlin",
+    "orderDate": "2024-05-07",
+    "status": "Delivered",
+    "netAmount": "250"
+  },
+  {
+    "id": "user_2",
+    "customer": "John Doe",
+    "location": "Berlin",
+    "orderDate": "2024-05-07",
+    "status": "Delivered",
+    "netAmount": "250"
+  }
+]
