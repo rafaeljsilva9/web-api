@@ -1,13 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 
 export const orderBy = (
-  movies: string[],
+  movies: { id: string; name: string }[],
   order: string
-): string[] => {
+): { id: string; name: string }[] => {
   return movies.sort((a, b) =>
     order === "asc"
-      ? a.localeCompare(b)
-      : b.localeCompare(a)
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name)
   );
 };
 
