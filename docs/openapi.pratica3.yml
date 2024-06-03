@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: Swagger da Academia - OpenAPI 3.0
+  description: |-
+    Prática de Documentação de Web API
+  version: 1.0.0
+servers:
+  - url: http://0.0.0.0:3000/
+tags:
+  - name: treinos
+    description: Tudo sobre treinos e exercícios de academia
+paths:
+  /aluno/idAluno/exercicio/idExercicio:
+    get:
+      tags:
+        - treinos
+      summary: Modifica um exercicio
+      description: Edita partes de um exercício de um aluno
+      parameters:
+        - name: idAluno
+          in: query
+          description: ID do aluno cujo exercicio será modificado
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: idExercicio
+          in: query
+          description: ID do exercicio a ser modificado
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Exercicios encontrados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExercicioEdicao'
+components:
+  schemas:
+    ExercicioEdicao:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: "Mobilidade Quadril Z Sentado"
+        séries:
+          type: integer
+          example: 3
+        repetições:
+          type: string
+          example: "10-15"
+        intervalo:
+          type: string
+          example: "0:40"
+        observação:
+          type: string
+          example: "Pausa de 10 segundos na metade das repetições"

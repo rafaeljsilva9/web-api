@@ -1,0 +1,32 @@
+openapi: 3.0.3
+info:
+  title: Swagger da Academia - OpenAPI 3.0
+  description: |-
+    Prática de Documentação de Web API
+  version: 1.0.0
+servers:
+  - url: http://0.0.0.0:3000/
+tags:
+  - name: treinos
+    description: Tudo sobre treinos e exercícios de academia
+paths:
+  /exercicios:  # <- complete aqui
+    <ROTA>:  # <- complete aqui
+      tags:
+        - treinos
+      summary: Exercicios de um aluno
+      description: Lista os exercícios de um aluno em um determino intervalo de datas
+      responses:
+        '200':
+          description: Exercicios encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref:  # <- complete aqui
+
+components:
+  schemas:
+    Exercicio:
+      # <- complete aqui
