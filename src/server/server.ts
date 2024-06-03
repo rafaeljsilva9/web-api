@@ -17,8 +17,9 @@ const movies = [
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, '../client')));
 app.get('/pages/movies', (req, res) => {
-  const filePath = path.join(__dirname, '../resources', 'movies.html');
+  const filePath = path.join(__dirname, '../client', 'movies.html');
   res.status(200).sendFile(filePath);
 });
 
