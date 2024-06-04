@@ -90,7 +90,7 @@ app.delete("/api/movies/:id", (req: Request<{ id: string }>, res) => {
       // Crie um middleware para retornar um erro 400 Bad Request
       res
         .status(404)
-        .json({ error: "The movie you want to update does not exist" });
+        .json({ error: "The movie you want to delete does not exist" });
     }
   } else {
     // Crie um middleware para retornar um erro 400 Bad Request
