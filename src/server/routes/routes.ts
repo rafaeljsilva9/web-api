@@ -3,6 +3,7 @@ import express from "express";
 import path from "path";
 import moviesRoutes from './movies.route';
 import pagesRoutes from './pages.route';
+import checkApiKey from "../middlewares/api-key";
 
 const app = express();
 
@@ -13,8 +14,7 @@ app.use(urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../../client')));
 
 /** Routes */
-
-app.use('/api/movies', moviesRoutes);
+app.use('/api/movies', checkApiKey, moviesRoutes);
 app.use('/pages/movies', pagesRoutes);
 
 export default app;
