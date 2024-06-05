@@ -3,7 +3,12 @@ import path from "path";
 
 const routes = express.Router();
 
-routes.get("/", (req, res) => {
+routes.get("/index", (req, res) => {
+  const filePath = path.join(__dirname, "../../client", "index.html");
+  res.status(200).sendFile(filePath);
+});
+
+routes.get("/movies", (req, res) => {
   const filePath = path.join(__dirname, "../../client", "movies.html");
   res.status(200).sendFile(filePath);
 });

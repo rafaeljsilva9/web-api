@@ -7,9 +7,11 @@ async function getMoviesApi() {
     order: "desc",
   };
   const queryString = new URLSearchParams(params).toString();
+  const token = localStorage.getItem('token');
   const response = await fetch(`${API_HOST}/movies?${queryString}`, {
     headers: {
       "x-api-key": API_KEY,
+      'Authorization': `Bearer ${token}`
     },
   });
 
@@ -22,11 +24,13 @@ async function getMoviesApi() {
 }
 
 async function addMovieApi({ name }) {
+  const token = localStorage.getItem('token');
   const response = await fetch(`${API_HOST}/movies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "x-api-key": API_KEY,
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({ name }),
   });
@@ -40,11 +44,13 @@ async function addMovieApi({ name }) {
 }
 
 async function updateMovieApi({ id, name }) {
+  const token = localStorage.getItem('token');
   const response = await fetch(`${API_HOST}/movies/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       "x-api-key": API_KEY,
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({ name }),
   });
@@ -58,10 +64,12 @@ async function updateMovieApi({ id, name }) {
 }
 
 async function deleteMovieApi({ id }) {
+  const token = localStorage.getItem('token');
   const response = await fetch(`${API_HOST}/movies/${id}`, {
     method: "DELETE",
     headers: {
       "x-api-key": API_KEY,
+      'Authorization': `Bearer ${token}`
     },
   });
 

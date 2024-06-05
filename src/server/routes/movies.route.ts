@@ -1,7 +1,7 @@
 import express, { Request } from "express";
 import path from "path";
 import { generateUniqueIdentifier, orderBy } from "../utils";
-import movies from "../database";
+import { movies } from "../database";
 
 const routes = express.Router();
 
