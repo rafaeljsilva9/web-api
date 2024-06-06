@@ -4,7 +4,8 @@ import path from "path";
 const routes = express.Router();
 
 routes.get("/", (req, res) => {
-  const filePath = path.join(__dirname, "../../client", "movies.html");
+  const filePath = path.join(__dirname, "../../client/pages", "movies.html");
+  console.log(filePath);
   res.status(200).sendFile(filePath);
 });
 
