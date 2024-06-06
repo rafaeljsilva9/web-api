@@ -9,4 +9,8 @@ export const movies = [
   { id: generateUniqueIdentifier(), name: "Interstellar" },
 ];
 
+export const users = [
+  { username: "vini-junior", password: "$2a$12$JR4LY6/tuJNxGZ8YrJt.pOm7hfxDjA2ZaU5D7UOSo0CqsxUz6w/Be" },
+];
+
 export const SECRET_KEY = crypto.randomBytes(64).toString('hex');
