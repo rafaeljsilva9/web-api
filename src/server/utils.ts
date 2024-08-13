@@ -14,3 +14,9 @@ export const orderBy = (
 export const generateUniqueIdentifier = (): string => {
   return uuidv4();
 };
+
+export enum AthenticationType {
+  None = 'none',
+  ApiKey = 'apiKey',
+  Token = 'token'
+}
