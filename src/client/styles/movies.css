@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 500px;
+}
+.header {
+  background-color: #6200ea;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 1.5em;
+}
+.movie-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.movie-list li {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+}
+.movie-list li:hover {
+  background-color: #f1f1f1;
+}
+.movie-list li:last-child {
+  border-bottom: none;
+}
+.movie-list li button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+}
+.movie-list li button:hover {
+  color: #007bff;
+}
+.content-div {
+  width: 55%;
+  word-wrap: break-word;
+}
+.buttons-div {
+  display: flex;
+}
+.edit-input {
+  display: none;
+  width: 80%;
+  padding: 5px;
+}
+.edit-input input {
+  width: 100%;
+}
+.edit-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+}
+.edit-btn:hover {
+  color: #0056b3;
+}
+.add-movie-form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  text-align: center;
+}
+.add-movie-input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.add-movie-btn {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add-movie-btn:hover {
+  background-color: #0056b3;
+}

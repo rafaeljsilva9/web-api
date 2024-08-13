@@ -1,53 +1,77 @@
-$(document).ready(function () {
-  get()
-    .then((rowsData) => {
-      populateTable(rowsData);
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  const movieList = document.getElementById("movie-list");
+  document
+    .getElementById("add-movie-btn")
+    .addEventListener("click", addNewMovie);
 
-  $('[data-toggle="tooltip"]').tooltip();
+  function loadMovies() {
+    getMoviesApi()
+      .then((data) => {
+        movieList.innerHTML = "";
+        document.getElementById("new-movie-name").value = "";
+        data.forEach((movie) => {
+          const li = document.createElement("li");
+          const editInput = document.createElement("input");
+          editInput.classList.add("edit-input");
+          editInput.value = movie.name;
 
-  $("#filter").click(function () {
-    var searchText = $("#search-text").val().toLowerCase();
+          const editButton = document.createElement("button");
+          editButton.classList.add("edit-btn");
+          editButton.innerText = "Editar";
+          editButton.onclick = function () {
+            editMovie(movie.id, editInput);
+          };
 
-    $(".table tbody tr").each(function () {
-      var customer = $(this).find("td:eq(1)").text().toLowerCase();
-      var location = $(this).find("td:eq(2)").text().toLowerCase();
-      var status = $(this).find("td:eq(4)").text().toLowerCase();
+          const deleteButton = document.createElement("button");
+          deleteButton.innerText = "Remover";
+          deleteButton.addEventListener("click", function () {
+            deleteMovie(movie.id);
+          });
 
-      if (
-        customer.includes(searchText) ||
-        location.includes(searchText) ||
-        status.includes(searchText)
-      ) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-  });
+          const buttonsDiv = document.createElement("div");
+          buttonsDiv.className = "buttons-div";
+          buttonsDiv.appendChild(editButton);
+          buttonsDiv.appendChild(deleteButton);
 
-  $("#filter-location").change(function () {
-    var location = $(this).val().toLowerCase();
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "content-div";
+          contentDiv.textContent = `${movie.name}`;
+          contentDiv.appendChild(editInput);
 
-    $(".table tbody tr").each(function () {
-      var rowLocation = $(this).find("td:eq(2)").text().toLowerCase();
+          li.appendChild(contentDiv);
+          li.appendChild(buttonsDiv);
 
-      if (location === "all" || rowLocation === location) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-  });
+          movieList.appendChild(li);
+        });
+      })
+      .catch((error) => console.error("Erro ao carregar filmes:", error));
+  }
 
-  $("#add-new").click(function () {
-    var newLine = $("#new-line");
-
-    if (newLine.length === 0) {
-      addNewTableRow();
+  function addNewMovie() {
+    const name = document.getElementById("new-movie-name").value;
+    if (name) {
+      addMovieApi({ name: name })
+        .then(loadMovies)
+        .catch((error) => console.error("Erro ao adicionar filme:", error));
     }
-  });
+  }
+
+  function editMovie(id, inputElement) {
+    const newName = prompt("Digite o novo nome do filme:", inputElement.value);
+    if (newName) {
+      updateMovieApi({ id, name: newName })
+        .then(loadMovies)
+        .catch((error) => console.error("Erro ao editar filme:", error));
+    }
+  }
+
+  function deleteMovie(id) {
+    if (confirm("Tem certeza que deseja remover este filme?")) {
+      deleteMovieApi({id})
+        .then(loadMovies)
+        .catch((error) => console.error("Erro ao remover filme:", error));
+    }
+  }
+
+  loadMovies();
 });
