@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "src/server/server.ts", "use": "@vercel/node" }
-  ],
+  "builds": [{ "src": "src/server/server.ts", "use": "@vercel/node" }],
   "routes": [
-    { "src": "/(.*)", "dest": "/src/server/server.ts" }
+    {
+      "src": "/(.*)",
+      "dest": "/src/server/server.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
   ]
 }
