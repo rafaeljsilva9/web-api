@@ -1,4 +1,4 @@
-const API_HOST = "http://localhost:3000/api";
+const API_HOST = "https://fast-web-api.vercel.app/api";
 /** Should be stored in a safe place */ 
 const API_KEY = "110ec58a-a0f2-4ac4-8393-c866d813b8d1";
 
