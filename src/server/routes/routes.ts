@@ -9,7 +9,7 @@ import checkToken from "../middlewares/authenticate";
 import { AthenticationType } from "../utils";
 
 const app = express();
-const authenticationType: AthenticationType = AthenticationType.None;
+const authenticationType: AthenticationType = AthenticationType.Token;
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
