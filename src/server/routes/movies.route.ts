@@ -33,9 +33,14 @@ routes.get(
 /** Create a movie*/
 routes.post("/", (req: Request<{}, {}, { name: string }>, res) => {
   const { name } = req.body;
-  const newMovie = { id: generateUniqueIdentifier(), name };
-  movies.push(newMovie);
-  res.status(201).json(newMovie);
+
+  if (name) {
+    const newMovie = { id: generateUniqueIdentifier(), name };
+    movies.push(newMovie);
+    res.status(201).json(newMovie);
+  } else {
+    res.status(400).json({ error: '"Name" should not be null or empty' });
+  }
 });
 
 /** Update a movie*/
@@ -46,15 +51,19 @@ routes.put(
     const { name } = req.body;
 
     if (id) {
-      const movie = movies.find((movie) => movie.id === id);
+      if (name) {
+        const movie = movies.find((movie) => movie.id === id);
 
-      if (movie) {
-        movie.name = name;
-        res.status(200).json(movie);
+        if (movie) {
+          movie.name = name;
+          res.status(200).json(movie);
+        } else {
+          res
+            .status(404)
+            .json({ error: "The movie you want to update does not exist" });
+        }
       } else {
-        res
-          .status(404)
-          .json({ error: "The movie you want to update does not exist" });
+        res.status(400).json({ error: '"Name" should not be null or empty' });
       }
     } else {
       res.status(400).json({ error: "The query params `id` is mandatory" });

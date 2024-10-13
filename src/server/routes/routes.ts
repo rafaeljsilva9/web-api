@@ -7,14 +7,25 @@ import authRoutes from "./auth.route";
 import checkApiKey from "../middlewares/api-key";
 import checkToken from "../middlewares/authenticate";
 import { AthenticationType } from "../utils";
+import cors from 'cors';
 
 const app = express();
-const authenticationType: AthenticationType = AthenticationType.None;
+const authenticationType: AthenticationType = AthenticationType.Token;
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../../client")));
+
+// Use CORS middleware
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'authorization']
+}));
+
+// Handle preflight requests
+app.options('*', cors());
 
 /** Routes */
 app.use(
