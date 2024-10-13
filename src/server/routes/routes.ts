@@ -10,7 +10,7 @@ import { AthenticationType } from "../utils";
 import cors from 'cors';
 
 const app = express();
-const authenticationType: AthenticationType = AthenticationType.Token;
+const authenticationType: AthenticationType = AthenticationType.None;
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
